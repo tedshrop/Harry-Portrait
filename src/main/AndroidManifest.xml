@@ -4,6 +4,7 @@
     <!-- Direct filesystem access for USB drives -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application android:label="Harry Portrait" android:theme="@style/Theme.App"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +23,7 @@
         <service
             android:name=".AutoLaunchService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:exported="false">
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />

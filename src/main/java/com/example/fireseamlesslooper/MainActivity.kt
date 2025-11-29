@@ -9,6 +9,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
+import android.os.PowerManager
+import android.content.Context
 import com.example.fireseamlesslooper.usb.UsbDirectWatcher
 import com.example.fireseamlesslooper.usb.UsbFileRepository
 import com.example.fireseamlesslooper.video.VideoPlaybackController
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var usbWatcher: UsbDirectWatcher
 
     private lateinit var mediaSession: MediaSessionCompat
+    private var wakeLock: PowerManager.WakeLock? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +125,14 @@ class MainActivity : AppCompatActivity() {
 
         mediaSession.setPlaybackState(playbackState)
         mediaSession.isActive = true
+
+        // Acquire WakeLock to keep screen on during video playback
+        val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+        wakeLock = powerManager.newWakeLock(
+            PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,
+            "HarryPortrait::VideoPlaybackWakeLock"
+        )
+        wakeLock?.acquire()
     }
 
     private fun hideSystemUI() {
@@ -138,6 +149,14 @@ class MainActivity : AppCompatActivity() {
         videoController.releasePlayer()
         try {
             mediaSession.release()
+        } catch (e: Exception) {
+            // ignore
+        }
+        // Release WakeLock
+        try {
+            if (wakeLock != null && wakeLock?.isHeld == true) {
+                wakeLock?.release()
+            }
         } catch (e: Exception) {
             // ignore
         }

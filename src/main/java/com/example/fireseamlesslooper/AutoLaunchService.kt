@@ -13,18 +13,31 @@ class AutoLaunchService : AccessibilityService() {
 
     override fun onServiceConnected() {
         super.onServiceConnected()
-
-        LogOverlay.log("AutoLaunchService connected — launching app")
-
-        handler.postDelayed({
-            val intent = Intent(this, MainActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            }
-            startActivity(intent)
-        }, 1500)
+        LogOverlay.log("AutoLaunchService connected and monitoring for launcher events")
     }
 
-    override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
-    override fun onInterrupt() {}
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
+        if (event?.eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+            val packageName = event.packageName?.toString() ?: ""
+            val className = event.className?.toString() ?: ""
+
+            // Check if we're on the launcher/home screen
+            if (packageName.contains("launcher") || className.contains("launcher") ||
+                className.contains("Launcher") || packageName.contains("android")) {
+                LogOverlay.log("Launcher detected - launching Harry Portrait app")
+
+                handler.postDelayed({
+                    val intent = Intent(this, MainActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    }
+                    startActivity(intent)
+                }, 1000) // Shorter delay for responsive auto-launch
+            }
+        }
+    }
+
+    override fun onInterrupt() {
+        LogOverlay.log("AutoLaunchService interrupted")
+    }
 }

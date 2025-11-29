@@ -1,27 +1,31 @@
 [
     {
-        "merged": "com.example.fireseamlesslooper-merged_res-32:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.example.fireseamlesslooper-main-34:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-main-34:\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.example.fireseamlesslooper-merged_res-32:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.example.fireseamlesslooper-main-34:/mipmap-xxhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "com.example.fireseamlesslooper-merged_res-32:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.example.fireseamlesslooper-main-34:/mipmap-mdpi/ic_launcher.png"
-    },
-    {
-        "merged": "com.example.fireseamlesslooper-merged_res-32:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.example.fireseamlesslooper-main-34:/mipmap-xxxhdpi/ic_launcher.png"
-    },
-    {
-        "merged": "com.example.fireseamlesslooper-merged_res-32:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.example.fireseamlesslooper-main-34:/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-main-34:\\mipmap-mdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-main-34:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-main-34:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "com.example.fireseamlesslooper-merged_res-32:/xml_auto_launch_service_config.xml.flat",
+        "source": "com.example.fireseamlesslooper-main-34:/xml/auto_launch_service_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-main-34:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-main-34:\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\Teddy\\.gradle\\daemon\\8.10\\com.example.fireseamlesslooper-merged_res-32:\\xml_auto_launch_service_config.xml.flat",
