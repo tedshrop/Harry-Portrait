@@ -4,24 +4,7 @@
             "outputFile": "com.example.fireseamlesslooper-mergeDebugResources-30:/values-uk/values-uk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Teddy\\.gradle\\caches\\8.10\\transforms\\9653eabbac95d7aaa2e33e56594d36c0\\transformed\\exoplayer-core-2.19.1\\res\\values-uk\\values-uk.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,129,194,262,333,413,486,579,668",
-                        "endColumns": "73,64,67,70,79,72,92,88,74",
-                        "endOffsets": "124,189,257,328,408,481,574,663,738"
-                    },
-                    "to": {
-                        "startLines": "81,82,83,84,85,86,87,88,89",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "6575,6649,6714,6782,6853,6933,7006,7099,7188",
-                        "endColumns": "73,64,67,70,79,72,92,88,74",
-                        "endOffsets": "6644,6709,6777,6848,6928,7001,7094,7183,7258"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Teddy\\.gradle\\caches\\8.10\\transforms\\ed884778f186d9c2fe30b5ba303931ba\\transformed\\exoplayer-ui-2.19.1\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\Teddy\\.gradle\\caches\\8.10\\transforms\\8d1832840f2b5fcfe0d7d209422c686a\\transformed\\jetified-exoplayer-ui-2.19.1\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2,11,17,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -71,6 +54,23 @@
                         "startOffsets": "1006,1115,1217,1325,1411,1516,1634,1715,1794,1885,1978,2073,2167,2267,2360,2455,2550,2641,2732,2831,2937,3043,3141,3248,3355,3460,3630,8411",
                         "endColumns": "108,101,107,85,104,117,80,78,90,92,94,93,99,92,94,94,90,90,98,105,105,97,106,106,104,169,99,81",
                         "endOffsets": "1110,1212,1320,1406,1511,1629,1710,1789,1880,1973,2068,2162,2262,2355,2450,2545,2636,2727,2826,2932,3038,3136,3243,3350,3455,3625,3725,8488"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Teddy\\.gradle\\caches\\8.10\\transforms\\83142d01b4bb1ac97e01f3354aa29d95\\transformed\\jetified-exoplayer-core-2.19.1\\res\\values-uk\\values-uk.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,129,194,262,333,413,486,579,668",
+                        "endColumns": "73,64,67,70,79,72,92,88,74",
+                        "endOffsets": "124,189,257,328,408,481,574,663,738"
+                    },
+                    "to": {
+                        "startLines": "81,82,83,84,85,86,87,88,89",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "6575,6649,6714,6782,6853,6933,7006,7099,7188",
+                        "endColumns": "73,64,67,70,79,72,92,88,74",
+                        "endOffsets": "6644,6709,6777,6848,6928,7001,7094,7183,7258"
                     }
                 }
             ]

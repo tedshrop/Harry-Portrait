@@ -1,0 +1,9 @@
+*.log
+.gradle/
+.idea/
+build/
+captures/
+local.properties
+*.iml
+*.aab
+*.dex

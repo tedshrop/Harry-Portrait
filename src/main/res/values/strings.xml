@@ -1,0 +1,5 @@
+<resources>
+    <string name="accessibility_service_description">
+    Enables automatic launch of the application after Fire TV boots.
+    </string>
+</resources>

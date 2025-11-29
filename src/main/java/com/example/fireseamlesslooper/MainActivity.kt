@@ -5,7 +5,10 @@ import android.util.Log
 import android.os.Handler
 import android.os.Looper
 import android.view.TextureView
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import android.support.v4.media.session.MediaSessionCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import com.example.fireseamlesslooper.usb.UsbDirectWatcher
 import com.example.fireseamlesslooper.usb.UsbFileRepository
 import com.example.fireseamlesslooper.video.VideoPlaybackController
@@ -16,17 +19,23 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "USB_DIRECT"
     private var modeHandler: Handler? = null
     private var modeRunnable: Runnable? = null
+    private var exitTapCount = 0
+    private var lastTapTime = 0L
 
     // Core managers
     private val usbFileRepository = UsbFileRepository
     private lateinit var videoController: VideoPlaybackController
     private lateinit var usbWatcher: UsbDirectWatcher
 
+    private lateinit var mediaSession: MediaSessionCompat
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
         hideSystemUI()
         setContentView(R.layout.activity_main)
+
+        initMediaSession()
 
         // Initialize managers
         videoController = VideoPlaybackController(application, usbFileRepository)
@@ -97,8 +106,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Mode cycling disabled — we keep a static rotated view for now (no on-screen debug)
+    }
 
-        Log.d(TAG, "MainActivity initialization complete")
+    private fun initMediaSession() {
+        mediaSession = MediaSessionCompat(this, "LooperMediaSession")
+
+        val playbackState = PlaybackStateCompat.Builder()
+            .setState(
+                PlaybackStateCompat.STATE_PLAYING,
+                PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN,
+                1.0f
+            )
+            .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE)
+            .build()
+
+        mediaSession.setPlaybackState(playbackState)
+        mediaSession.isActive = true
     }
 
     private fun hideSystemUI() {
@@ -113,6 +136,11 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         usbWatcher.stop()
         videoController.releasePlayer()
+        try {
+            mediaSession.release()
+        } catch (e: Exception) {
+            // ignore
+        }
         // Mode cycling disabled; nothing to stop
         try {
             modeHandler?.removeCallbacksAndMessages(null)
@@ -121,6 +149,30 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             // ignore
         }
-        Log.d(TAG, "MainActivity destroyed")
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        // Delay a bit to avoid flicker
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }, 800)
+    }
+
+    override fun onUserInteraction() {
+        val now = System.currentTimeMillis()
+        if (now - lastTapTime < 600) {  // 600ms double-tap window
+            exitTapCount++
+            if (exitTapCount >= 6) { // 6 rapid taps = exit
+                finish()
+                return
+            }
+        } else {
+            exitTapCount = 1
+        }
+        lastTapTime = now
     }
 }

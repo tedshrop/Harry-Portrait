@@ -76,10 +76,10 @@ class VideoRepository(private val usbFileRepository: UsbFileRepository, private 
 
         // Category weights (matching the original implementation)
         val folderWeights = mapOf(
-            "common" to 60,
-            "uncommon" to 25,
-            "rare" to 10,
-            "legendary" to 5
+            "common" to 860,
+            "uncommon" to 120,
+            "rare" to 17,
+            "legendary" to 3
         )
 
         // Filter to only categories that have videos
