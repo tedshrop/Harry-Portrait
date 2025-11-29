@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate")
         hideSystemUI()
+        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContentView(R.layout.activity_main)
 
         initMediaSession()
@@ -132,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,
             "HarryPortrait::VideoPlaybackWakeLock"
         )
-        wakeLock?.acquire()
+        wakeLock?.acquire(10*60*60*1000L) // 10 hours timeout
     }
 
     private fun hideSystemUI() {
@@ -172,13 +173,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-
-        // Delay a bit to avoid flicker
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }, 800)
+        // Only restart if we're actually being paused by user action, not destroyed
+        // This prevents conflicts with the accessibility service
+        if (!isFinishing) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFinishing && !isDestroyed) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(intent)
+                }
+            }, 1000) // Increased from 800ms to 1000ms
+        }
     }
 
     override fun onUserInteraction() {

@@ -1,5 +1,3 @@
 <resources>
-    <string name="accessibility_service_description">
-    Enables automatic launch of the application after Fire TV boots.
-    </string>
+<string name="accessibility_service_description">Automatically launches Harry Portrait when Fire TV returns to home screen. This helps keep the portrait display running continuously.</string>
 </resources>
