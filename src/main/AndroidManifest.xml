@@ -8,6 +8,8 @@
 
     <application android:label="Harry Portrait" android:theme="@style/Theme.App"
         android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:banner="@mipmap/ic_launcher"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         tools:replace="android:appComponentFactory">
         <activity android:name=".MainActivity" android:launchMode="singleTask"
@@ -22,6 +24,7 @@
 
         <service
             android:name=".AutoLaunchService"
+            android:label="Harry Portrait Auto Launch"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:exported="true"
             android:enabled="true">
