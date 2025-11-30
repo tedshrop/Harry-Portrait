@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application android:label="Harry Portrait" android:theme="@style/Theme.App"
         android:icon="@mipmap/ic_launcher"
@@ -22,20 +24,24 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".AutoLaunchService"
-            android:label="Harry Portrait Auto Launch"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+        <!-- Boot receiver to detect when Fire TV starts -->
+        <receiver
+            android:name=".BootReceiver"
+            android:enabled="true"
             android:exported="true"
-            android:enabled="true">
-
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
+            android:directBootAware="false">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </receiver>
 
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/auto_launch_service_config" />
-        </service>
+        <!-- Foreground service to launch app on boot -->
+        <service
+            android:name=".BootLaunchService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
     </application>
 </manifest>
